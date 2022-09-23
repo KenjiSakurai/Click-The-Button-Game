@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escaping Button</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        div{
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+        }
+
+        button{
+            padding: 2vh;
+            border: 3px solid black;
+            text-align: center;
+            position: absolute;
+            top: 50vh;
+            left: 50vw;
+        }
+
+        button:hover{
+            background-color: gainsboro;
+            cursor: pointer;
+        }
+
+        h1{
+            color: white;
+            font-size: 20vh;
+            text-align: center;
+            animation: win 3s infinite;
+            visibility: hidden;
+            position: absolute;
+            margin-left: 32vw;
+        }
+        
+        @keyframes win {
+            0%   {color: red;}
+            25%  {color: yellow;}
+            50%  {color: blue;}
+            100% {color: green;}
+        }
+
+        #overlay{
+            visibility: hidden;
+            background-image: url(confetti.gif);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div style="background-color: grey;">
+        <div id="overlay"></div>
+        <h1>You Win!</h1>
+        <button onclick="btnClick()">Click Me</button>
+    </div>
+
+<script>
+    let randomH = 50;
+    let randomW = 50;
+    let btn = document.querySelector('button');
+    let bg = document.querySelector('div:first-child');
+    let header = document.querySelector('h1');
+    let overlay = document.querySelector('#overlay');
+
+
+    addEventListener('mouseover', (event) => {
+        btn.style.left = randomW + 'vw';
+        btn.style.top = randomH + 'vh';
+    });
+
+    setInterval(function(){ 
+    randomH = Math.floor((Math.random() * 90) + 1);
+    randomW = Math.floor((Math.random() * 95) + 1);
+    }, 100);
+
+    // if(randomH >   0 < 25){ btn.textContent = 'Over here!'}
+    // else if(randomH >= 25 < 50){ btn.textContent = 'Missed me!'}
+    // else if(randomH >= 50 < 75){ btn.textContent = 'Too slow!'}
+    // else if(randomH >= 75 <= 100){ btn.textContent = 'Try again!'}
+
+
+    function btnClick(){
+        bg.style.backgroundImage = "url('monkey.gif')";
+        overlay.style.visibility = 'visible';
+        header.style.visibility = 'visible';
+        btn.textContent = 'You got me...'
+
+        addEventListener('mouseover', (event) => {
+        btn.style.left = '50vw';
+        btn.style.top = '50vh';
+    });
+    }
+
+
+
+</script>
+</body>
+</html>
