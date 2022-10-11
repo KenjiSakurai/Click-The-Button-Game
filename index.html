@@ -23,8 +23,8 @@
             border: 3px solid black;
             text-align: center;
             position: absolute;
-            top: 50vh;
-            left: 50vw;
+            top: 47vh;
+            left: 47.5vw;
         }
 
         button:hover{
@@ -34,12 +34,19 @@
 
         h1{
             color: white;
+            height: 10vh;
             font-size: 20vh;
             text-align: center;
             animation: win 3s infinite;
             visibility: hidden;
-            position: absolute;
-            margin-left: 32vw;
+            margin: 5vw;
+        }
+
+        h2{
+            color: white;
+            font-size: 5vh;
+            margin-left: 5vh;
+            display: inline;
         }
         
         @keyframes win {
@@ -61,6 +68,7 @@
     <div style="background-color: grey;">
         <div id="overlay"></div>
         <h1>You Win!</h1>
+        <h2 id="counter">Clicks: 0</h2>
         <button onclick="btnClick()">Click Me</button>
     </div>
 
@@ -81,7 +89,7 @@
     setInterval(function(){ 
     randomH = Math.floor((Math.random() * 90) + 1);
     randomW = Math.floor((Math.random() * 95) + 1);
-    }, 100);
+    }, 300);
 
     // if(randomH >   0 < 25){ btn.textContent = 'Over here!'}
     // else if(randomH >= 25 < 50){ btn.textContent = 'Missed me!'}
@@ -96,11 +104,18 @@
         btn.textContent = 'You got me...'
 
         addEventListener('mouseover', (event) => {
-        btn.style.left = '50vw';
-        btn.style.top = '50vh';
-    });
+            btn.style.left = '50vw';
+            btn.style.top = '50vh';
+        });
     }
 
+    var clicks = 0;
+
+    bg.onclick = clickCount;
+
+    function clickCount() {
+        document.querySelector('h2').textContent = "Clicks: " + ++clicks;
+    }
 
 
 </script>
